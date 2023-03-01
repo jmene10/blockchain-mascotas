@@ -1,0 +1,111 @@
+[{
+        "menuId": 0,
+        "primerPlato": "Sopa de verduras",
+        "segundoPlato": "Hamburguesa de ternera",
+        "postre": "Helado",
+        "precio": 15,
+        "isAvailable": true,
+        "image": " "
+    },
+
+    {
+        "menuId": 0,
+        "primerPlato": "Sopa de verduras",
+        "segundoPlato": "Hamburguesa de ternera",
+        "postre": "Helado",
+        "precio": 15,
+        "isAvailable": true,
+        "image": " "
+    },
+
+    {
+        "menuId": 1,
+        "primerPlato": "Sopa de verduras",
+        "segundoPlato": "Hamburguesa de ternera",
+        "postre": "Helado",
+        "precio": 15,
+        "isAvailable": true,
+        "image": " "
+    },
+
+    {
+        "menuId": 2,
+        "primerPlato": "Sopa de verduras",
+        "segundoPlato": "Hamburguesa de ternera",
+        "postre": "Helado",
+        "precio": 15,
+        "isAvailable": true,
+        "image": " "
+    },
+
+    {
+        "menuId": 3,
+        "primerPlato": "Sopa de verduras",
+        "segundoPlato": "Hamburguesa de ternera",
+        "postre": "Helado",
+        "precio": 15,
+        "isAvailable": true,
+        "image": " "
+    },
+
+    {
+        "menuId": 4,
+        "primerPlato": "Sopa de verduras",
+        "segundoPlato": "Hamburguesa de ternera",
+        "postre": "Helado",
+        "precio": 15,
+        "isAvailable": true,
+        "image": " "
+    },
+
+    {
+        "menuId": 5,
+        "primerPlato": "Sopa de verduras",
+        "segundoPlato": "Hamburguesa de ternera",
+        "postre": "Helado",
+        "precio": 15,
+        "isAvailable": true,
+        "image": " "
+    },
+
+    {
+        "menuId": 6,
+        "primerPlato": "Sopa de verduras",
+        "segundoPlato": "Hamburguesa de ternera",
+        "postre": "Helado",
+        "precio": 15,
+        "isAvailable": true,
+        "image": " "
+    },
+
+    {
+        "menuId": 7,
+        "primerPlato": "Sopa de verduras",
+        "segundoPlato": "Hamburguesa de ternera",
+        "postre": "Helado",
+        "precio": 15,
+        "isAvailable": true,
+        "image": " "
+    },
+
+    {
+        "menuId": 8,
+        "primerPlato": "Sopa de verduras",
+        "segundoPlato": "Hamburguesa de ternera",
+        "postre": "Helado",
+        "precio": 15,
+        "isAvailable": true,
+        "image": " "
+    },
+
+    {
+        "menuId": 9,
+        "primerPlato": "Sopa de verduras",
+        "segundoPlato": "Hamburguesa de ternera",
+        "postre": "Helado",
+        "precio": 15,
+        "isAvailable": true,
+        "image": " "
+    }
+
+]
