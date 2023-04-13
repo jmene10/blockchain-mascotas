@@ -9,10 +9,11 @@ menuForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const primerPlato = menuForm["primerPlato"].value;
     const segundoPlato = menuForm["segundoPlato"].value;
+    const postre = menuForm["postre"].value;
     const disponible = menuForm["disponible"].value;
     const precio = menuForm["precio"].value;
 
-    App.createHouse(primerPlato, segundoPlato, disponible, precio);
+    App.createHouse(primerPlato, segundoPlato, postre, disponible, precio);
 });
 
 const menuList = document.querySelector("#menuList");
