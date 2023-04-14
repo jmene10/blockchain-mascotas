@@ -53,7 +53,7 @@ contract Owners {
     }
 
 
-    // function anyadir nuevo menu
+    // function anyadir nuevo mascota
     function addMascota(string memory _seller, string memory _tipoMascota, string memory _razaMascota, uint256 _precio) public {
         total++;
         mascotas[total]= Mascota(total, _seller, _tipoMascota, _razaMascota, _precio, true, payable(msg.sender));

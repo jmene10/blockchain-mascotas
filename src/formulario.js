@@ -3,24 +3,24 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-const menuForm = document.querySelector("#menuForm");
+const mascotaForm = document.querySelector("#mascotaForm");
 //Obtiene los datos del formulario
-menuForm.addEventListener("submit", (e) => {
+mascotaForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    const primerPlato = menuForm["primerPlato"].value;
-    const segundoPlato = menuForm["segundoPlato"].value;
-    const postre = menuForm["postre"].value;
-    const disponible = menuForm["disponible"].value;
-    const precio = menuForm["precio"].value;
+    const seller = mascotaForm["seller"].value;
+    const tipoMascota = mascotaForm["tipoMascota"].value;
+    const razaMascota = mascotaForm["razaMascota"].value;
+    const precio = mascotaForm["precio"].value;
 
-    App.createHouse(primerPlato, segundoPlato, postre, disponible, precio);
+    App.createMascota(seller, tipoMascota, razaMascota, precio);
 });
 
-const menuList = document.querySelector("#menuList");
-//Obtiene el atributo id del boton de comprar que corresponde a cada casa
-menuList.addEventListener("click", (e) => {
-    e.preventDefault();
-    const menuId = e.target.getAttribute('id');
+const menuList = document.querySelector("#mascotaList");
 
-    App.buyMenu(menuId);
+//Obtiene el id del boton de comprar de cada mascota
+mascotList.addEventListener("click", (e) => {
+    e.preventDefault();
+    const mascotaId = e.target.getAttribute('id');
+
+    App.buyMascota(mascotaId);
 });

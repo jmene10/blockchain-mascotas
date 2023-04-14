@@ -5,7 +5,7 @@ App = {
         await App.loadAccount();
         await App.loadContract();
         await App.loadCuenta();
-        await App.loadMenus();
+        await App.loadMascotas();
     },
 
     loadWeb3: async() => {
@@ -48,37 +48,39 @@ App = {
         document.getElementById("account").innerText = App.account;
     },
 
-    // mostrar todas las casas almacenadas
+    // mostrar todas las mascotas existentes
     loadMenus: async() => {
-        const menusCounter = await App.owners.total();
-        const menusCounterNum = menusCounter.toNumber();
+        const mascotasCounter = await App.owners.total();
+        const mascotasCounterNum = mascotasCounter.toNumber();
 
         let html = "";
 
-        for (let i = 1; i <= menusCounterNum; i++) {
-            const menu = await App.owners.menus(i);
-            console.log(menu);
-            const menuId = menus[0].toNumber();
-            const primerPlato = menus[1];
-            const segundoPlato = menus[2];
-            const postre = menus[3];
-            const precio = menus[4];
-            const isAvailable = menus[5];
+        for (let i = 1; i <= mascotasCounterNum; i++) {
+            const mascota = await App.owners.mascotas(i);
+            console.log(mascota);
+            const mascotaId = mascotas[0].toNumber();
+            const seller = mascotas[1];
+            const tipoMascota = mascotas[2];
+            const razaMascota = mascotas[3];
+            const precio = mascotas[4];
+            const isAvailable = mascotas[5];
 
-            // imagenes de los menus
-            const image = "images/house" + menuId + ".jpg";
+            // imagenes de las mascotas
+            const image = "images/mascota" + mascotaId + ".jpg";
 
-            // cargar menus nuevos que se añaden
+            // cargar mascotas nuevas que se añadan
 
-            document.querySelector("#menusList").innerHTML = html;
+
+
+            document.querySelector("#mascotasList").innerHTML = html;
         }
 
     },
 
-    // envia datos formulario y crea nueva casa
-    createMenu: async(primerPlato, segundoPlato, postre, disponible, precio) => {
+    // envia datos formulario y crea nueva mascota
+    createMascota: async(seller, tipoMascota, razaMascota, precio) => {
         try {
-            const res = await App.owners.addNewMenu(primerPlato, segundoPlato, postre, disponible, precio, {
+            const res = await App.owners.addMascota(seller, tipoMascota, razaMascota, precio, {
                 from: App.account,
             });
             console.log(res.logs[0].args);
@@ -88,10 +90,10 @@ App = {
         }
     },
 
-    // llama a funcion comprar y marca menu como vendido
-    buyMenu: async(menuId) => {
+    // llama a funcion comprar y marca mascota como vendido
+    buyMascota: async(mascotaId) => {
         try {
-            const res = await App.owners.buy(menuId, {
+            const res = await App.owners.buyMascota(mascotaId, {
                 from: App.account,
             });
             console.log(res.logs[0].args);
