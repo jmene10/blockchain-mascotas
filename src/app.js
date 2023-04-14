@@ -73,10 +73,10 @@ App = {
             document.querySelector("#menusList").innerHTML = html;
         }
 
-    }
+    },
 
     // envia datos formulario y crea nueva casa
-        createMenu: async(primerPlato, segundoPlato, postre, disponible, precio) => {
+    createMenu: async(primerPlato, segundoPlato, postre, disponible, precio) => {
         try {
             const res = await App.owners.addNewMenu(primerPlato, segundoPlato, postre, disponible, precio, {
                 from: App.account,

@@ -3,31 +3,31 @@ pragma solidity ^0.8.6;
 
 contract Owners {
 
-    struct Menu {
-        uint256 menuId; //Identificador
-        string primerPlato;
-        string segundoPlato;
-        string postre;
+    struct Mascota {
+        uint256 mascotaId; //Identificador
+        string seller;
+        string tipoMascota;
+        string razaMascota;
         uint256 precio;
         bool isAvailable;
         address payable owner;
     }
 
-    event MenuBuy (
-        uint256 menuId,
-        string primerPlato,
-        string segundoPlato,
-        string postre,
+    event MascotaBuy (
+        uint256 mascotaId,
+        string seller, 
+        string tipoMascota,
+        string razaMascota,
         uint256 precio,
         bool isAvailable,
         address payable owner
     );
 
-    event MenuEvent (
-        uint256 menuId,
-        string primerPlato,
-        string segundoPlato,
-        string postre,
+    event MascotaEvent (
+        uint256 mascotaId,
+        string seller, 
+        string tipoMascota,
+        string razaMascota,
         uint256 precio,
         bool isAvailable,
         address payable owner
@@ -35,29 +35,29 @@ contract Owners {
 
     
 
-    mapping(uint256 => Menu) public menus;
+    mapping(uint256 => Mascota) public mascotas;
     uint256 public total=0;
 
 
 
-    // function comprar menu
-    function buy(uint256 _menuId) public{
-        require(_menuId >=0 && _menuId < total);
-        Menu memory _menu = menus[_menuId];
+    // function comprar mascota
+    function buyMascota(uint256 _mascotaId) public {
+        require(_mascotaId >= 0 && _mascotaId < total);
+        Mascota memory _mascota = mascotas[_mascotaId];
 
-        require(menus[_menuId].isAvailable == true); //si el menu esta disponible 
+        require(mascotas[_mascotaId].isAvailable == true);
 
-        menus[_menuId].isAvailable == false; //registramos compra de menu 
-
-        emit MenuBuy(total, _menu.primerPlato, _menu.segundoPlato, _menu.postre, _menu.precio, false, payable(msg.sender));
+        mascotas[_mascotaId].isAvailable = false;
+        
+        emit MascotaBuy(total, _mascota.seller, _mascota.tipoMascota, _mascota.razaMascota, _mascota.precio, false, payable(msg.sender));
     }
 
 
     // function anyadir nuevo menu
-    function addMenu(string memory _primerPlato, string memory _segundoPlato, string memory _postre, uint256 _precio) public {
+    function addMascota(string memory _seller, string memory _tipoMascota, string memory _razaMascota, uint256 _precio) public {
         total++;
-        menus[total]= Menu(total, _primerPlato, _segundoPlato, _postre, _precio, true, payable(msg.sender));
-        emit MenuEvent(total, _primerPlato, _segundoPlato, _postre, _precio, true, payable(msg.sender));
+        mascotas[total]= Mascota(total, _seller, _tipoMascota, _razaMascota, _precio, true, payable(msg.sender));
+        emit MascotaEvent(total, _seller, _tipoMascota, _razaMascota, _precio, true, payable(msg.sender));
     }
 
 
