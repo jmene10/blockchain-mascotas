@@ -18,7 +18,7 @@ mascotaForm.addEventListener("submit", (e) => {
 const menuList = document.querySelector("#mascotaList");
 
 //Obtiene el id del boton de comprar de cada mascota
-mascotList.addEventListener("click", (e) => {
+mascotaList.addEventListener("click", (e) => {
     e.preventDefault();
     const mascotaId = e.target.getAttribute('id');
 

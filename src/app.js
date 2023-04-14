@@ -69,11 +69,30 @@ App = {
             const image = "images/mascota" + mascotaId + ".jpg";
 
             // cargar mascotas nuevas que se añadan
+            let htmlElement = `<div class="card bg-dark rounded-0 mb-2">
+		        <div class="card-header d-flex justify-content-between align-items-center">
+		         <div class="panel-heading">
+		 	         <br/><br/><h3 class="panel-title">${tipoMascota}</h3>
+               </div>
+			       <div id="contenedor">
+				        <div class="content">
+					        <img alt="140x140" class="img-rounded img-center" width="240px" height="240px" src="${image}" data-holder-rendered="true">
+					        <br/><br/>
+					        <button class="btn btn-default btn-buy" type="button" id="${mascotaId}" ${isAvailable === false && "disabled"}>Comprar</button>
+				        </div>
+		 	            <div class="content">
+		 		            <h4 class="house-seller" style = "font-family:helvética;">Vendedor: ${seller}</h4>
+		 		            <h4 class="house-state" style = "font-family:helvética;">Raza Mascota: ${razaMascota}</h4>
+        		            <h4 class="house-precio" style = "font-family:helvética;">Precio: ${precio} Eth</h4>
+		 	            </div>
+		            </div>
+		        </div>
+		    </div>`;
 
 
-
-            document.querySelector("#mascotasList").innerHTML = html;
         }
+
+        document.querySelector("#mascotasList").innerHTML = html;
 
     },
 
