@@ -1,23 +1,11 @@
 App = {
     contracts: {},
     init: async() => {
-        await App.loadContract();
         await App.loadWeb3();
         await App.loadAccount();
-    },
-
-    loadContract: async() => {
-        try {
-            var res = await fetch("Owners.json");
-            var ownersJson = await res.json();
-
-            App.contracts.Owners = TruffleContract(ownersJson);
-            App.contracts.Owners.setProvider(App.web3Provider);
-
-            App.owners = await App.contracts.Owners.deployed();
-        } catch (error) {
-            console.error(error);
-        }
+        await App.loadContract();
+        await App.loadCuenta();
+        await App.loadMascotas();
     },
 
     loadWeb3: async() => {
@@ -33,23 +21,104 @@ App = {
         }
     },
 
-
-    // Cuenta de Metamask en la que nos encontramos
+    // carga cuenta metamask
     loadAccount: async() => {
-        var accounts = await window.ethereum.request({
+        const accounts = await window.ethereum.request({
             method: "eth_requestAccounts",
         });
-        App.acount = accounts[0];
+        App.account = accounts[0];
     },
 
-    buyMenu: async(menuId) => {
+    // cargar contrato
+    loadContract: async() => {
         try {
-            var result = await App.owners.buy(menuId, { from: App.acount, });
-            console.log(result.logs[0].args);
+            const res = await fetch("Owners.json");
+            const ownersJ = await res.json();
+            App.contracts.Owners = TruffleContract(ownersJ);
+            App.contracts.Owners.setProvider(App.web3Provider);
+
+            App.owners = await App.con.Owners.deployed();
+        } catch (error) {
+            console.error(error);
+        }
+    },
+
+    // funcion que llama a cuenta que hemos cargado previamente
+    loadCuenta: async() => {
+        document.getElementById("account").innerText = App.account;
+    },
+
+    // mostrar todas las mascotas existentes
+    loadMenus: async() => {
+        const mascotasCounter = await App.owners.total();
+        const mascotasCounterNum = mascotasCounter.toNumber();
+
+        let html = "";
+
+        for (let i = 1; i <= mascotasCounterNum; i++) {
+            const mascota = await App.owners.mascotas(i);
+            console.log(mascota);
+            const mascotaId = mascotas[0].toNumber();
+            const seller = mascotas[1];
+            const tipoMascota = mascotas[2];
+            const razaMascota = mascotas[3];
+            const precio = mascotas[4];
+            const isAvailable = mascotas[5];
+
+            // imagenes de las mascotas
+            const image = "images/mascota" + mascotaId + ".jpg";
+
+            // cargar mascotas nuevas que se añadan
+            let htmlElement = `<div class="card bg-dark rounded-0 mb-2">
+		        <div class="card-header d-flex justify-content-between align-items-center">
+		         <div class="panel-heading">
+		 	         <br/><br/><h3 class="panel-title">${tipoMascota}</h3>
+               </div>
+			       <div id="contenedor">
+				        <div class="content">
+					        <img alt="140x140" class="img-rounded img-center" width="240px" height="240px" src="${image}" data-holder-rendered="true">
+					        <br/><br/>
+					        <button class="btn btn-default btn-buy" type="button" id="${mascotaId}" ${isAvailable === false && "disabled"}>Comprar</button>
+				        </div>
+		 	            <div class="content">
+		 		            <h4 class="house-seller" style = "font-family:helvética;">Vendedor: ${seller}</h4>
+		 		            <h4 class="house-state" style = "font-family:helvética;">Raza Mascota: ${razaMascota}</h4>
+        		            <h4 class="house-precio" style = "font-family:helvética;">Precio: ${precio} Eth</h4>
+		 	            </div>
+		            </div>
+		        </div>
+		    </div>`;
+
+
+        }
+
+        document.querySelector("#mascotasList").innerHTML = html;
+
+    },
+
+    // envia datos formulario y crea nueva mascota
+    createMascota: async(seller, tipoMascota, razaMascota, precio) => {
+        try {
+            const res = await App.owners.addMascota(seller, tipoMascota, razaMascota, precio, {
+                from: App.account,
+            });
+            console.log(res.logs[0].args);
             window.location.reload();
         } catch (error) {
             console.error(error);
         }
+    },
 
+    // llama a funcion comprar y marca mascota como vendido
+    buyMascota: async(mascotaId) => {
+        try {
+            const res = await App.owners.buyMascota(mascotaId, {
+                from: App.account,
+            });
+            console.log(res.logs[0].args);
+            window.location.reload();
+        } catch (error) {
+            console.error(error);
+        }
     }
 }
