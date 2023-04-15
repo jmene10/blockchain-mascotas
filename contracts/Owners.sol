@@ -38,7 +38,12 @@ contract Owners {
     mapping(uint256 => Mascota) public mascotas;
     uint256 public total=0;
 
-
+    // function anyadir nuevo mascota
+    function addMascota(string memory _seller, string memory _tipoMascota, string memory _razaMascota, uint256 _precio) public {
+        total++;
+        mascotas[total]= Mascota(total, _seller, _tipoMascota, _razaMascota, _precio, true, payable(msg.sender));
+        emit MascotaEvent(total, _seller, _tipoMascota, _razaMascota, _precio, true, payable(msg.sender));
+    }
 
     // function comprar mascota
     function buyMascota(uint256 _mascotaId) public {
@@ -50,14 +55,6 @@ contract Owners {
         mascotas[_mascotaId].isAvailable = false;
         
         emit MascotaBuy(total, _mascota.seller, _mascota.tipoMascota, _mascota.razaMascota, _mascota.precio, false, payable(msg.sender));
-    }
-
-
-    // function anyadir nuevo mascota
-    function addMascota(string memory _seller, string memory _tipoMascota, string memory _razaMascota, uint256 _precio) public {
-        total++;
-        mascotas[total]= Mascota(total, _seller, _tipoMascota, _razaMascota, _precio, true, payable(msg.sender));
-        emit MascotaEvent(total, _seller, _tipoMascota, _razaMascota, _precio, true, payable(msg.sender));
     }
 
 
