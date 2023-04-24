@@ -49,7 +49,7 @@ App = {
     },
 
     // mostrar todas las mascotas existentes
-    loadMenus: async() => {
+    loadMascotas: async() => {
         const mascotasCounter = await App.owners.total();
         const mascotasCounterNum = mascotasCounter.toNumber();
 
