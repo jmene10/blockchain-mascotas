@@ -58,12 +58,12 @@ App = {
         for (let i = 1; i <= mascotasCounterNum; i++) {
             const mascota = await App.owners.mascotas(i);
             console.log(mascota);
-            const mascotaId = mascotas[0].toNumber();
-            const seller = mascotas[1];
-            const tipoMascota = mascotas[2];
-            const razaMascota = mascotas[3];
-            const precio = mascotas[4];
-            const isAvailable = mascotas[5];
+            const mascotaId = mascota[0].toNumber();
+            const seller = mascota[1];
+            const tipoMascota = mascota[2];
+            const razaMascota = mascota[3];
+            const precio = mascota[4];
+            const isAvailable = mascota[5];
 
             // imagenes de las mascotas
             const image = "images/mascota" + mascotaId + ".jpg";
