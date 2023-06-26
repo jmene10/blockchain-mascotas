@@ -1,0 +1,14 @@
+body {
+    background: #083702;
+    color: #ffffff;
+}
+
+#contenedor {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+#contenedor>div {
+    width: 50%;
+}
