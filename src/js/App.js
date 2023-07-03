@@ -1,5 +1,8 @@
 App = {
     contracts: {},
+    web3Provider: null,
+    owners: null,
+
     init: async() => {
         await App.loadWeb3();
         await App.loadAccount();
@@ -28,7 +31,7 @@ App = {
 
     loadContract: async() => {
         try {
-            const res = await fetch("build/contracts/Owners.json");
+            const res = await fetch("Owners.json");
             const ownersJson = await res.json();
 
             App.contracts.Owners = TruffleContract(ownersJson);
@@ -60,7 +63,7 @@ App = {
             const precio = mascota[4];
             const isAvailable = mascota[5];
 
-            const image = `images/mascota${mascotaId}.jpg`;
+            const image = 'images/mascota${mascotaId}.jpg';
 
             let htmlElement = `<div class="card bg-dark rounded-0 mb-2">
           <div class="card-header d-flex justify-content-between align-items-center">
@@ -73,7 +76,8 @@ App = {
                 <br/><br/>
                 <button class="btn btn-default btn-buy" type="button" id="${mascotaId}" ${
         isAvailable === false ? "disabled" : ""
-      }>Comprar</button>
+      }
+      >Comprar</button>
               </div>
               <div class="content">
                 <h4 class="house-seller" style="font-family: helvética;">Vendedor: ${seller}</h4>
